@@ -16,6 +16,11 @@ class Project(object):
         if not self.filepath.exists():
             self.filepath.touch()
 
+    def delete(self):
+        projdir = Path.cwd() / '.projects'
+        self.filepath =  projdir / (self.name + '.txt')
+        self.filepath.unlink()
+
     def add_task(self, task_name):
         tasks = self.get_tasks()
         if task_name in tasks:
